@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KurdoIds - حسابات Apple ID</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen p-5">
+    <div class="max-w-md mx-auto">
+        <header class="text-center mb-6 pt-4">
+            <h1 class="text-2xl font-bold text-blue-400">KurdoIds</h1>
+            <p class="text-gray-400 text-sm mt-1">حسابات Apple ID محدثة تلقائياً</p>
+        </header>
+
+        <div id="accounts-list" class="grid gap-4">
+            <p class="text-center text-gray-500">جاري الاتصال بقاعدة البيانات...</p>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://xwxvakyxlqtgmblovzao.supabase.co';
+        const SUPABASE_ANON_KEY = 'Sb_publishable_81lGi6fwhS2kQekWxDEJEQ_vpheRygF';
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function fetchAccounts() {
+            const { data, error } = await supabaseClient
+                .from('accounts')
+                .select('*')
+                .order('updated_at', { ascending: false });
+
+            const container = document.getElementById('accounts-list');
+            
+            if (error) {
+                container.innerHTML = `<div class="bg-red-900/40 border border-red-500 p-4 rounded-xl text-center text-red-300">خطأ: ${error.message}</div>`;
+                return;
+            }
+
+            if (!data || data.length === 0) {
+                container.innerHTML = `<div class="bg-gray-800 border border-gray-700 p-6 rounded-xl text-center text-gray-300">تم الاتصال بنجاح! ✅<br><span class="text-sm text-gray-400 mt-2 block">الجدول فارغ حالياً، بانتظار إضافة الحسابات.</span></div>`;
+                return;
+            }
+
+            container.innerHTML = data.map(acc => `
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs text-gray-400">البريد الإلكتروني</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${acc.status === 'نشط' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}">
+                            ${acc.status || 'نشط'}
+                        </span>
+                    </div>
+                    <p class="font-mono font-bold text-base text-blue-400 mb-3">${acc.email}</p>
+                    
+                    <div class="bg-gray-900 p-2.5 rounded-lg flex justify-between items-center mb-3">
+                        <span class="text-xs text-gray-400">الباسورد:</span>
+                        <span class="font-mono text-sm text-white">${acc.password}</span>
+                    </div>
+
+                    <p class="text-xs text-gray-400 mb-3">التطبيقات: ${acc.apps || 'عام'}</p>
+                    
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="navigator.clipboard.writeText('${acc.email}'); alert('تم نسخ الإيميل!');" class="bg-blue-600 active:bg-blue-700 py-2 rounded-lg text-xs font-bold">
+                            نسخ الإيميل
+                        </button>
+                        <button onclick="navigator.clipboard.writeText('${acc.password}'); alert('تم نسخ الباسورد!');" class="bg-gray-700 active:bg-gray-600 py-2 rounded-lg text-xs font-bold">
+                            نسخ الباسورد
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        fetchAccounts();
+    </script>
+</body>
+</html>
