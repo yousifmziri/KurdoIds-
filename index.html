@@ -14,54 +14,32 @@
         </header>
 
         <div id="accounts-list" class="space-y-3">
-            <p class="text-center text-gray-400 py-8">جاري تحميل الحسابات...</p>
-        </div>
-    </div>
+            <!-- الحسابات جاهزة -->
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                <div class="font-bold text-yellow-300 mb-2">حساب Apple ID 1</div>
+                <div class="text-sm text-gray-300 space-y-1">
+                    <p><strong>البريد:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-blue-400 inline-block">David7zksmunoz@hotmail.com</span></p>
+                    <p><strong>كلمة المرور:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-green-400 inline-block">x5Qt9ch9m9</span></p>
+                </div>
+            </div>
 
-    <script>
-        const SUPABASE_URL = 'https://xvakyzxlxtbldvdxoios.supabase.co';
-        const SUPABASE_ANON_KEY = 'Sb_publishable_81lGi6fwhS2kQekWxDEJEQ_vpheRygF';
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                <div class="font-bold text-yellow-300 mb-2">حساب Apple ID 2</div>
+                <div class="text-sm text-gray-300 space-y-1">
+                    <p><strong>البريد:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-blue-400 inline-block">jarvarisrivetteuf3409@gmail.com</span></p>
+                    <p><strong>كلمة المرور:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-green-400 inline-block">44s41NP3MD5pf3</span></p>
+                </div>
+            </div>
 
-        async function loadAccounts() {
-            const container = document.getElementById('accounts-list');
-            try {
-                const response = await fetch(SUPABASE_URL + '/rest/v1/accounts?select=*', {
-                    method: 'GET',
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-                        'Content-Type': 'application/json'
-                    }
-                });
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                <div class="font-bold text-yellow-300 mb-2">حساب Apple ID 3</div>
+                <div class="text-sm text-gray-300 space-y-1">
+                    <p><strong>البريد:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-blue-400 inline-block">quodonnell@gmail.com</span></p>
+                    <p><strong>كلمة المرور:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-green-400 inline-block">Dd10096da</span></p>
+                </div>
+            </div>
 
-                if (!response.ok) {
-                    throw new Error('رمز الاستجابة: ' + response.status);
-                }
-
-                const data = await response.json();
-
-                if (!data || data.length === 0) {
-                    container.innerHTML = '<p class="text-center text-gray-400 py-8">لا توجد حسابات مضافة حالياً.</p>';
-                    return;
-                }
-
-                container.innerHTML = data.map(acc => `
-                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-bold text-yellow-300">${acc.title || 'حساب Apple ID'}</span>
-                        </div>
-                        <div class="text-sm text-gray-300 space-y-1">
-                            <p><strong>البريد:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-blue-400 inline-block">${acc.email}</span></p>
-                            <p><strong>كلمة المرور:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-green-400 inline-block">${acc.password}</span></p>
-                        </div>
-                    </div>
-                `).join('');
-            } catch (err) {
-                container.innerHTML = `<p class="text-center text-red-400 py-8">خطأ بالاتصال: تأكد من الإنترنت أو سوبابيس</p>`;
-            }
-        }
-
-        loadAccounts();
-    </script>
-</body>
-</html>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                <div class="font-bold text-yellow-300 mb-2">حساب Apple ID 4</div>
+                <div class="text-sm text-gray-300 space-y-1">
+                    <p><strong>البريد:</strong> <span dir="ltr" class="select-all bg-gray-900 px-2 py-0.5 rounded text-blue-400 inline-block">Deboraz
