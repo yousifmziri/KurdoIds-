@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://dvsteam.vn/id-apple-shadowrocket"
+url = "https://naidounode.com/ndid/2026-11-04/"
 
 try:
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
@@ -12,25 +12,27 @@ try:
     
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
-        elements = soup.find_all(['code', 'span', 'p', 'div', 'td', 'strong', 'li'])
+        
+        # استخراج النصوص من عناصر الصفحة للبحث عن الحسابات
+        elements = soup.find_all(['span', 'p', 'div', 'td', 'strong', 'li', 'code'])
         
         valid_emails = []
         valid_passwords = []
         
         for el in elements:
             text = el.get_text().strip()
-            # التقاط أي إيميل بدون تعقيد
+            # تصفية الإيميلات
             if '@' in text and '.' in text and len(text) < 60 and ' ' not in text:
                 if text not in valid_emails and not text.startswith('http'):
                     valid_emails.append(text)
             
-            # التقاط أي كلمة مرور صالحة
+            # تصفية كلمات المرور الخاصة بالحسابات
             if len(text) >= 6 and len(text) <= 25 and '@' not in text and ' ' not in text:
                 if any(c.isupper() for c in text) and any(c.isdigit() for c in text):
                     if text not in valid_passwords:
                         valid_passwords.append(text)
         
-        # أخذ أول حساب يطلع بالوجه مباشرة
+        # أخذ أول حساب صالح يتم العثور عليه من الموقع الجديد
         if valid_emails:
             email = valid_emails[0]
         if valid_passwords:
@@ -120,7 +122,7 @@ try:
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
         
-    print("تم التحديث بنجاح!")
+    print("تم تحديث السكربت للرابط الجديد بنجاح!")
 
 except Exception as e:
     print(f"خطأ: {e}")
