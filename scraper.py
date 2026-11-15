@@ -12,8 +12,6 @@ try:
     
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
-        
-        # استخراج جميع النصوص والرموز المحتملة لحسابات Apple ID
         elements = soup.find_all(['code', 'span', 'p', 'div', 'td', 'strong', 'li'])
         
         valid_emails = []
@@ -21,24 +19,20 @@ try:
         
         for el in elements:
             text = el.get_text().strip()
-            # تصفية الإيميلات الصحيحة
             if '@' in text and '.' in text and len(text) < 60 and ' ' not in text:
                 if text not in valid_emails and not text.startswith('http'):
                     valid_emails.append(text)
             
-            # تصفية كلمات المرور (تحتوي على أحرف وأرقام وبطول مناسب)
             if len(text) >= 6 and len(text) <= 25 and '@' not in text and ' ' not in text:
                 if any(c.isupper() for c in text) and any(c.isdigit() for c in text):
                     if text not in valid_passwords:
                         valid_passwords.append(text)
         
-        # اختيار أول حساب حقيقي تم العثور عليه من القائمة المتنوعة
         if valid_emails:
             email = valid_emails[0]
         if valid_passwords:
             password = valid_passwords[0]
 
-    # تصميمك الأصلي والفخم مع ربط بيانات الحسابات المسحوبة تلقائياً
     html_content = f"""<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -55,21 +49,18 @@ try:
 <body class="min-h-screen flex flex-col justify-between items-center p-4">
     
     <div class="w-full max-w-md mx-auto flex flex-col items-center pt-8">
-        <!-- Logo / Icon -->
         <div class="w-16 h-16 bg-gradient-to-tr from-amber-500 to-yellow-300 rounded-2xl flex items-center justify-center shadow-lg shadow-amber-500/20 mb-4">
             <i class="fa-solid fa-shield-halved text-2xl text-slate-950"></i>
         </div>
         
         <h1 class="text-2xl font-extrabold tracking-wide text-amber-400 mb-2">Kurd0oAccounts</h1>
         
-        <!-- Telegram Channel Badge -->
         <a href="https://t.me/Kurd0o1" target="_blank" class="flex items-center gap-2 px-4 py-1.5 bg-slate-900 border border-slate-800 rounded-full text-blue-400 text-xs font-semibold shadow hover:bg-slate-800 transition">
             <span>Kurd0o1@</span>
             <i class="fa-brands fa-telegram text-blue-400"></i>
         </a>
     </div>
 
-    <!-- Main Card -->
     <main class="w-full max-w-md mx-auto my-6">
         <div class="bg-slate-900/90 backdrop-blur border border-slate-800/80 rounded-2xl p-5 shadow-2xl relative overflow-hidden">
             <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-blue-500 to-indigo-500"></div>
@@ -81,7 +72,6 @@ try:
                 <span class="text-xs font-bold px-3 py-1 bg-amber-500/10 text-amber-400 rounded-lg border border-amber-500/20">حساب Apple ID جاهز</span>
             </div>
 
-            <!-- Email Field -->
             <div class="mb-4">
                 <label class="block text-xs text-slate-400 mb-1.5 font-medium">البريد الإلكتروني</label>
                 <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-3 shadow-inner">
@@ -92,7 +82,6 @@ try:
                 </div>
             </div>
 
-            <!-- Password Field -->
             <div>
                 <label class="block text-xs text-slate-400 mb-1.5 font-medium">كلمة المرور</label>
                 <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-3 shadow-inner">
@@ -105,12 +94,10 @@ try:
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="w-full text-center text-xs text-slate-500 pb-2">
         جميع الحقوق محفوظة &copy; Kurd0oAccounts
     </footer>
 
-    <!-- Copy Script -->
     <script>
         function copyText(elementId, btn) {{
             const text = document.getElementById(elementId).innerText;
@@ -130,7 +117,7 @@ try:
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
         
-    print("تم إعادة ضبط السكربت وتحديث الموقع بنجاح!")
+    print("تم التحديث بنجاح!")
 
 except Exception as e:
     print(f"خطأ: {e}")
