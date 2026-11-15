@@ -13,20 +13,32 @@ try:
         email = "غير متوفر حالياً"
         password = "غير متوفر حالياً"
         
-        code_blocks = soup.find_all(['code', 'span', 'p', 'div'])
-        for block in code_blocks:
-            text = block.get_text().strip()
-            if '@' in text and '.' in text and len(text) < 50 and ' ' not in text:
+        # البحث الذكي داخل كل النصوص والرموز بصفحة dvsteam
+        elements = soup.find_all(['code', 'span', 'p', 'div', 'td', 'strong'])
+        
+        for el in elements:
+            text = el.get_text().strip()
+            # البحث عن البريد الإلكتروني الصحيح
+            if '@' in text and '.' in text and len(text) < 60 and ' ' not in text and '@js001.club' in text:
                 email = text
                 break
-                
-        for block in code_blocks:
-            text = block.get_text().strip()
-            if len(text) >= 6 and len(text) <= 20 and '@' not in text and any(c.isupper() for c in text) and any(c.isdigit() for c in text):
+        
+        # إذا ما لكى نطاق معين، ياخذ أي إيميل صالح
+        if email == "غير متوفر حالياً":
+            for el in elements:
+                text = el.get_text().strip()
+                if '@' in text and '.' in text and len(text) < 50 and ' ' not in text:
+                    email = text
+                    break
+
+        for el in elements:
+            text = el.get_text().strip()
+            # البحث عن كلمة مرور مطابقة للمواصفات (أحرف وأرقام)
+            if len(text) >= 6 and len(text) <= 25 and '@' not in text and any(c.isupper() for c in text) and any(c.isdigit() for c in text):
                 password = text
                 break
 
-        # هذا هو تصميمك الأصلي والفخم بالضبط مع ربط الحسابات والتحديث التلقائي
+        # تصميمك الأصلي والفخم المرتبط بالتحديث التلقائي
         html_content = f"""<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -118,7 +130,7 @@ try:
         with open("index.html", "w", encoding="utf-8") as f:
             f.write(html_content)
             
-        print("تم تحديث الموقع بنجاح مع الاحتفاظ بالتصميم الأصلي!")
+        print("تم تحديث الكود وسحب الحساب بنجاح!")
 
 except Exception as e:
-    print(f"حدث خطأ: {e}")
+    print(f"خطأ: {e}")
