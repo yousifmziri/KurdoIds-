@@ -7,39 +7,39 @@ try:
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     response = requests.get(url, headers=headers)
     
+    email = "غير متوفر حالياً"
+    password = "غير متوفر حالياً"
+    
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        email = "غير متوفر حالياً"
-        password = "غير متوفر حالياً"
+        # استخراج جميع النصوص والرموز المحتملة لحسابات Apple ID
+        elements = soup.find_all(['code', 'span', 'p', 'div', 'td', 'strong', 'li'])
         
-        # البحث الذكي داخل كل النصوص والرموز بصفحة dvsteam
-        elements = soup.find_all(['code', 'span', 'p', 'div', 'td', 'strong'])
+        valid_emails = []
+        valid_passwords = []
         
         for el in elements:
             text = el.get_text().strip()
-            # البحث عن البريد الإلكتروني الصحيح
-            if '@' in text and '.' in text and len(text) < 60 and ' ' not in text and '@js001.club' in text:
-                email = text
-                break
+            # تصفية الإيميلات الصحيحة
+            if '@' in text and '.' in text and len(text) < 60 and ' ' not in text:
+                if text not in valid_emails and not text.startswith('http'):
+                    valid_emails.append(text)
+            
+            # تصفية كلمات المرور (تحتوي على أحرف وأرقام وبطول مناسب)
+            if len(text) >= 6 and len(text) <= 25 and '@' not in text and ' ' not in text:
+                if any(c.isupper() for c in text) and any(c.isdigit() for c in text):
+                    if text not in valid_passwords:
+                        valid_passwords.append(text)
         
-        # إذا ما لكى نطاق معين، ياخذ أي إيميل صالح
-        if email == "غير متوفر حالياً":
-            for el in elements:
-                text = el.get_text().strip()
-                if '@' in text and '.' in text and len(text) < 50 and ' ' not in text:
-                    email = text
-                    break
+        # اختيار أول حساب حقيقي تم العثور عليه من القائمة المتنوعة
+        if valid_emails:
+            email = valid_emails[0]
+        if valid_passwords:
+            password = valid_passwords[0]
 
-        for el in elements:
-            text = el.get_text().strip()
-            # البحث عن كلمة مرور مطابقة للمواصفات (أحرف وأرقام)
-            if len(text) >= 6 and len(text) <= 25 and '@' not in text and any(c.isupper() for c in text) and any(c.isdigit() for c in text):
-                password = text
-                break
-
-        # تصميمك الأصلي والفخم المرتبط بالتحديث التلقائي
-        html_content = f"""<!DOCTYPE html>
+    # تصميمك الأصلي والفخم مع ربط بيانات الحسابات المسحوبة تلقائياً
+    html_content = f"""<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -126,11 +126,11 @@ try:
 </body>
 </html>
 """
+    
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html_content)
         
-        with open("index.html", "w", encoding="utf-8") as f:
-            f.write(html_content)
-            
-        print("تم تحديث الكود وسحب الحساب بنجاح!")
+    print("تم إعادة ضبط السكربت وتحديث الموقع بنجاح!")
 
 except Exception as e:
     print(f"خطأ: {e}")
