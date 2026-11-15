@@ -3,22 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KurdoIds - حسابات Apple ID</title>
+    <title>Kurdolds - حسابات Apple ID</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-4">
     <div class="max-w-md mx-auto">
         <header class="text-center mb-6 pt-4">
-            <h1 class="text-2xl font-bold text-yellow-400">KurdoIds</h1>
+            <h1 class="text-2xl font-bold text-yellow-400">Kurdolds</h1>
             <p class="text-gray-400 text-sm mt-1">حسابات Apple ID موثوقة</p>
         </header>
 
-        <div id="accounts-list" class="grid gap-4">
+        <div id="accounts-list" class="space-y-3">
             <p class="text-center text-gray-500 py-8">جاري تحميل الحسابات...</p>
         </div>
     </div>
 
     <script>
-        const SUPABASE_URL = 'https://xwxvakyxlqtgmblovzao.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3eHZha3l4bHF0Z21ibG92emFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3NTQ0NTUsImV4cCI6MjExMDMzMDQ1NX0.2Uz3FYvOobOhG7WwzJepO9hIbFCeIiLXtXRv0duV1
+        const SUPABASE_URL = 'https://xvakyzxlxtbldvdxoios.supabase.co';
+        const SUPABASE_ANON_KEY = 'Sb_publishable_81lGi6fwhS2kQekWxDEJEQ_vpheRygF';
+        
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function loadAccounts() {
+            const container = document.getElementById('accounts-list');
+            try {
+                const { data, error } = await supabaseClient.from('accounts').select('*');
+                
+                if (error) throw error;
+                
+                if (!data || data.length === 0) {
+                    container.innerHTML = '<p class="text-center text-gray-400 py-8">لا توجد حسابات حالياً.</p>';
+                    return;
+                }
+
+                container.innerHTML = data.map(acc => `
+                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="
