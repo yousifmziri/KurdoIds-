@@ -14,7 +14,7 @@
         </header>
 
         <div id="accounts-list" class="space-y-3">
-            <p class="text-center text-gray-500 py-8">جاري تحميل الحسابات...</p>
+            <p class="text-center text-gray-400 py-8">جاري تحميل الحسابات...</p>
         </div>
     </div>
 
@@ -25,19 +25,23 @@
         async function loadAccounts() {
             const container = document.getElementById('accounts-list');
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/accounts?select=*`, {
+                const response = await fetch(SUPABASE_URL + '/rest/v1/accounts?select=*', {
+                    method: 'GET',
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                        'Content-Type': 'application/json'
                     }
                 });
 
-                if (!response.ok) throw new Error('فشل الاتصال بقاعدة البيانات');
+                if (!response.ok) {
+                    throw new Error('رمز الاستجابة: ' + response.status);
+                }
 
                 const data = await response.json();
 
                 if (!data || data.length === 0) {
-                    container.innerHTML = '<p class="text-center text-gray-400 py-8">لا توجد حسابات حالياً.</p>';
+                    container.innerHTML = '<p class="text-center text-gray-400 py-8">لا توجد حسابات مضافة حالياً.</p>';
                     return;
                 }
 
@@ -53,7 +57,7 @@
                     </div>
                 `).join('');
             } catch (err) {
-                container.innerHTML = `<p class="text-center text-red-400 py-8">خطأ: ${err.message}</p>`;
+                container.innerHTML = `<p class="text-center text-red-400 py-8">خطأ بالاتصال: تأكد من الإنترنت أو سوبابيس</p>`;
             }
         }
 
