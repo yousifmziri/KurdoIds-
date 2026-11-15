@@ -19,15 +19,18 @@ try:
         
         for el in elements:
             text = el.get_text().strip()
+            # التقاط أي إيميل بدون تعقيد
             if '@' in text and '.' in text and len(text) < 60 and ' ' not in text:
                 if text not in valid_emails and not text.startswith('http'):
                     valid_emails.append(text)
             
+            # التقاط أي كلمة مرور صالحة
             if len(text) >= 6 and len(text) <= 25 and '@' not in text and ' ' not in text:
                 if any(c.isupper() for c in text) and any(c.isdigit() for c in text):
                     if text not in valid_passwords:
                         valid_passwords.append(text)
         
+        # أخذ أول حساب يطلع بالوجه مباشرة
         if valid_emails:
             email = valid_emails[0]
         if valid_passwords:
