@@ -34,35 +34,39 @@
             </div>
             
             <h2 class="text-base font-bold text-white mb-1">يرجى الانضمام إلى قنواتنا أولاً</h2>
-            <p class="text-xs text-slate-400 mb-5">انضم إلى قنواتنا الأربعة أدناه لتظهر لك حسابات Apple ID فوراً:</p>
+            <p class="text-xs text-slate-400 mb-5">اضغط على القنوات الأربعة أدناه وانضم إليهن لتفتح لك الحسابات:</p>
 
-            <!-- قنواتك الأربعة الحقيقية -->
+            <!-- قنواتك الأربعة مع تتبع الضغط عليها -->
             <div class="flex flex-col gap-2.5 mb-6">
-                <a href="https://t.me/Kurd0o1" target="_blank" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
+                <a href="https://t.me/Kurd0o1" target="_blank" onclick="markClicked(1)" id="ch-1" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
                     <span class="text-xs font-medium text-slate-200">Kurd0o1</span>
                     <i class="fa-brands fa-telegram text-blue-400"></i>
                 </a>
-                <a href="https://t.me/Kurd0o2" target="_blank" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
+                <a href="https://t.me/Kurd0o2" target="_blank" onclick="markClicked(2)" id="ch-2" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
                     <span class="text-xs font-medium text-slate-200">Kurd0o2</span>
                     <i class="fa-brands fa-telegram text-blue-400"></i>
                 </a>
-                <a href="https://t.me/Kurd0o3" target="_blank" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
+                <a href="https://t.me/Kurd0o3" target="_blank" onclick="markClicked(3)" id="ch-3" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
                     <span class="text-xs font-medium text-slate-200">Kurd0o3</span>
                     <i class="fa-brands fa-telegram text-blue-400"></i>
                 </a>
-                <a href="https://t.me/Kurd0o4" target="_blank" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
+                <a href="https://t.me/Kurd0o4" target="_blank" onclick="markClicked(4)" id="ch-4" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
                     <span class="text-xs font-medium text-slate-200">Kurd0o4</span>
                     <i class="fa-brands fa-telegram text-blue-400"></i>
                 </a>
             </div>
 
-            <button onclick="showAccounts()" class="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-blue-600/20 transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-check-circle"></i>
-                <span>انضممت للقنوات، عرض الحسابات الآن</span>
-            </button>
+            <!-- زر عرض الحسابات (مخفي تماماً بالبداية وما يظهر إلا بعد الضغط على القنوات) -->
+            <div id="unlock-btn-container" class="hidden">
+                <button onclick="showAccounts()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2 animate-bounce">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <span>تم الانضمام، عرض الحسابات الآن</span>
+                </button>
+            </div>
+            <p id="hint-text" class="text-[11px] text-amber-400/80">يرجى زيارة القنوات الأربعة ليتفعل زر عرض الحسابات</p>
         </div>
 
-        <!-- قسم الحسابات (مخفي بالبداية ويظهر بعد الضغط على الزر) -->
+        <!-- قسم الحسابات (مخفي) -->
         <div id="accounts-section" class="hidden flex flex-col gap-4">
             
             <!-- الحساب الأول -->
@@ -129,6 +133,24 @@
     <footer class="w-full text-center text-xs text-slate-500 pb-2">جميع الحقوق محفوظة &copy; Kurd0oAccounts</footer>
     
     <script>
+        let clickedChannels = { 1: false, 2: false, 3: false, 4: false };
+
+        function markClicked(channelNum) {
+            clickedChannels[channelNum] = true;
+            
+            // تغيير لون الزر ليدل على أنه تم زيارته
+            const btn = document.getElementById('ch-' + channelNum);
+            btn.classList.add('border-emerald-500/60', 'bg-emerald-950/20');
+            btn.querySelector('.fa-telegram').classList.remove('text-blue-400');
+            btn.querySelector('.fa-telegram').classList.add('text-emerald-400');
+
+            // التحقق إذا زار القنوات الأربعة كلها
+            if (clickedChannels[1] && clickedChannels[2] && clickedChannels[3] && clickedChannels[4]) {
+                document.getElementById('unlock-btn-container').classList.remove('hidden');
+                document.getElementById('hint-text').style.display = 'none';
+            }
+        }
+
         function showAccounts() {
             document.getElementById('channels-section').style.display = 'none';
             document.getElementById('accounts-section').classList.remove('hidden');
