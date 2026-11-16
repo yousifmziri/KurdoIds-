@@ -25,7 +25,7 @@
 
     <main class="w-full max-w-md mx-auto my-6 flex flex-col gap-4">
         
-        <!-- قسم قنوات التليجرام -->
+        <!-- قسم قنوات التليجرام (إجباري بلغات متعددة) -->
         <div id="channels-section" class="bg-slate-900/95 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-2xl text-center relative overflow-hidden">
             <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></div>
             
@@ -35,7 +35,7 @@
             
             <h2 class="text-base font-bold text-white mb-1">يرجى الانضمام إلى قنواتنا أولاً</h2>
             <p class="text-[11px] text-slate-400 mb-1" dir="ltr">Please join our 4 channels below & wait 5s each:</p>
-            <p class="text-xs text-slate-400 mb-5">اضغط على القنوات الأربعة وانتظر 5 ثواني لكل قناة:</p>
+            <p class="text-xs text-slate-400 mb-5">اضغط على القنوات الأربعة وانتظر 5 ثواني لكل قناة لتفتح لك الحساب:</p>
 
             <!-- القنوات الأربعة مع مؤقت 5 ثواني -->
             <div class="flex flex-col gap-2.5 mb-6">
@@ -65,7 +65,7 @@
                 </a>
             </div>
 
-            <!-- زر عرض الحساب (مخفي بالبداية) -->
+            <!-- زر عرض الحسابات (مخفي بالبداية) -->
             <div id="unlock-btn-container" class="hidden">
                 <button onclick="showAccounts()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2 animate-bounce">
                     <i class="fa-solid fa-check-circle"></i>
@@ -75,30 +75,30 @@
             <p id="hint-text" class="text-[11px] text-amber-400/80">يرجى الانضمام إلى القنوات الأربعة ليتفعل زر العرض</p>
         </div>
 
-        <!-- قسم الحسابات النهائية (مخفي) -->
+        <!-- قسم الحسابات (مخفي) -->
         <div id="accounts-section" class="hidden flex flex-col gap-4">
             
-            <!-- الحساب -->
+            <!-- الحساب بدون اسم -->
             <div class="bg-slate-900/90 backdrop-blur border border-slate-800/80 rounded-2xl p-5 shadow-2xl relative overflow-hidden">
                 <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-blue-500 to-indigo-500"></div>
                 
                 <div class="flex items-center justify-between mb-4">
-                    <span class="text-xs font-medium text-slate-400 flex items-center gap-1"><i class="fa-solid fa-lock text-amber-400"></i> بيانات الحساب</span>
+                    <span class="text-xs font-medium text-slate-400 flex items-center gap-1"><i class="fa-solid fa-key text-amber-400"></i> بيانات الحساب</span>
                     <span class="text-xs font-bold px-3 py-1 bg-amber-500/10 text-amber-400 rounded-lg border border-amber-500/20">Account</span>
                 </div>
 
                 <div class="mb-3">
-                    <label class="block text-xs text-amber-400 mb-1 font-bold">Locked</label>
+                    <label class="block text-xs text-slate-400 mb-1 font-medium">البريد الإلكتروني / Email</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5 shadow-inner">
                         <button onclick="copyText('email-1', this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5"><i class="fa-regular fa-copy"></i> نسخ</button>
-                        <span dir="ltr" id="email-1" class="text-slate-200 font-mono text-sm select-all tracking-wider">zakrobert66386@icloud.com</span>
+                        <span dir="ltr" id="email-1" class="text-slate-200 font-mono text-sm select-all tracking-wider">locked</span>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs text-amber-400 mb-1 font-bold">مقفل</label>
+                    <label class="block text-xs text-slate-400 mb-1 font-medium">كلمة المرور / Password</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5 shadow-inner">
                         <button onclick="copyText('pass-1', this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5"><i class="fa-regular fa-copy"></i> نسخ</button>
-                        <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-sm select-all tracking-wider">Sangpham525</span>
+                        <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-sm select-all tracking-wider">حسابات مقفولين</span>
                     </div>
                 </div>
             </div>
