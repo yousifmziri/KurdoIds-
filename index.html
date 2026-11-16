@@ -25,7 +25,7 @@
 
     <main class="w-full max-w-md mx-auto my-6 flex flex-col gap-4">
         
-        <!-- الخطوة الأولى: قسم قنوات التليجرام -->
+        <!-- قسم قنوات التليجرام -->
         <div id="channels-section" class="bg-slate-900/95 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-2xl text-center relative overflow-hidden">
             <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></div>
             
@@ -65,38 +65,14 @@
                 </a>
             </div>
 
-            <!-- زر الانتقال للخطوة الثانية (التحقق) - مخفي بالبداية -->
-            <div id="proceed-btn-container" class="hidden">
-                <button onclick="showCaptchaSection()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2 animate-bounce">
-                    <i class="fa-solid fa-arrow-right"></i>
-                    <span>التالي: خطوة التحقق / Next: Verification</span>
+            <!-- زر عرض الحساب (مخفي بالبداية) -->
+            <div id="unlock-btn-container" class="hidden">
+                <button onclick="showAccounts()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2 animate-bounce">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <span>تم الانضمام، عرض الحساب الآن / View Account</span>
                 </button>
             </div>
-            <p id="hint-text" class="text-[11px] text-amber-400/80">يرجى الانضمام إلى القنوات الأربعة لفتح الخطوة التالية</p>
-        </div>
-
-        <!-- الخطوة الثانية: قسم التحقق البشري (Captcha سريعة - مخفي) -->
-        <div id="captcha-section" class="hidden bg-slate-900/95 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-2xl text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-amber-500 to-yellow-300"></div>
-            
-            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow">
-                <i class="fa-solid fa-robot text-xl"></i>
-            </div>
-            
-            <h2 class="text-base font-bold text-white mb-1">التحقق من أنك لست روبوت</h2>
-            <p class="text-[11px] text-slate-400 mb-1" dir="ltr">Please solve the math problem below:</p>
-            <p class="text-xs text-slate-400 mb-4">أجب عن المسألة الرياضية التالية لإظهار الحساب:</p>
-
-            <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 mb-4 flex flex-col items-center gap-3">
-                <span id="math-question" class="text-amber-400 font-mono text-base font-bold"></span>
-                <input type="number" id="math-answer" placeholder="اكتب الناتج هنا / Enter answer" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-center text-slate-200 focus:outline-none focus:border-amber-500 transition" dir="ltr">
-                <span id="captcha-error" class="text-[11px] text-red-400 hidden">الناتج غير صحيح، حاول مرة أخرى! / Incorrect answer!</span>
-            </div>
-
-            <button onclick="verifyCaptcha()" class="w-full py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-check-to-slot"></i>
-                <span>تحقق وعرض الحساب / Verify & Show Account</span>
-            </button>
+            <p id="hint-text" class="text-[11px] text-amber-400/80">يرجى الانضمام إلى القنوات الأربعة ليتفعل زر العرض</p>
         </div>
 
         <!-- قسم الحسابات النهائية (مخفي) -->
@@ -146,15 +122,6 @@
     
     <script>
         let channelState = { 1: 'pending', 2: 'pending', 3: 'pending', 4: 'pending' };
-        let num1 = 0, num2 = 0, correctAnswer = 0;
-
-        // توليد مسألة رياضية عشوائية جديدة
-        function generateMathProblem() {
-            num1 = Math.floor(Math.random() * 6) + 2; // رقم بين 2 و 7
-            num2 = Math.floor(Math.random() * 5) + 1; // رقم بين 1 و 5
-            correctAnswer = num1 + num2;
-            document.getElementById('math-question').innerText = `${num1} + ${num2} = ?`;
-        }
 
         function startTimer(channelNum) {
             if (channelState[channelNum] !== 'pending') return;
@@ -187,32 +154,14 @@
 
         function checkAllDone() {
             if (channelState[1] === 'done' && channelState[2] === 'done' && channelState[3] === 'done' && channelState[4] === 'done') {
-                document.getElementById('proceed-btn-container').classList.remove('hidden');
+                document.getElementById('unlock-btn-container').classList.remove('hidden');
                 document.getElementById('hint-text').style.display = 'none';
             }
         }
 
-        // الانتقال لخطوة التحقق الرياضي
-        function showCaptchaSection() {
+        function showAccounts() {
             document.getElementById('channels-section').style.display = 'none';
-            generateMathProblem(); // توليد السؤال
-            document.getElementById('captcha-section').classList.remove('hidden');
-        }
-
-        // التحقق من صحة الناتج
-        function verifyCaptcha() {
-            const userAnswer = parseInt(document.getElementById('math-answer').value);
-            const errorSpan = document.getElementById('captcha-error');
-
-            if (userAnswer === correctAnswer) {
-                errorSpan.classList.add('hidden');
-                document.getElementById('captcha-section').style.display = 'none';
-                document.getElementById('accounts-section').classList.remove('hidden');
-            } else {
-                errorSpan.classList.remove('hidden');
-                generateMathProblem(); // تغيير السؤال في حال الخطأ
-                document.getElementById('math-answer').value = '';
-            }
+            document.getElementById('accounts-section').classList.remove('hidden');
         }
 
         function copyText(elementId, btn) {
