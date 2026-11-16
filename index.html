@@ -61,29 +61,16 @@
         </a>
     </div>
 
-    <!-- المحتوى الرئيسي -->
+    <!-- المحتوى الأساسي -->
     <main class="w-full max-w-md mx-auto my-4 flex flex-col gap-4">
         
-        <!-- مؤقت الـ 24 ساعة -->
-        <div class="bg-slate-900/80 backdrop-blur cyber-border rounded-2xl p-3 text-center cyber-glow">
-            <div class="text-[11px] text-amber-400 font-bold mb-1 flex items-center justify-center gap-1.5">
-                <i class="fa-solid fa-stopwatch"></i>
-                <span id="t-timer-title">تێپەڕبوونا دەمی بۆ نویکرنا هژمارێن نوی</span>
-            </div>
-            <div id="countdown" class="text-amber-200 font-mono text-base font-extrabold tracking-widest" dir="ltr">23 : 59 : 59</div>
-        </div>
-
         <!-- لوحة تحكم الأدمن المخفية (تظهر بعد 5 ضغطات على التاج) -->
         <div id="admin-panel" class="hidden bg-slate-950 border-2 border-amber-500 rounded-2xl p-4 shadow-2xl">
             <div class="flex justify-between items-center mb-3">
                 <span class="text-xs font-bold text-amber-400"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</span>
                 <button onclick="document.getElementById('admin-panel').classList.add('hidden')" class="text-xs text-red-400">إغلاق ✖</button>
             </div>
-            <p class="text-[10px] text-slate-400 mb-2">أكواد الهدايا الفعالة حالياً (Redeem Codes):</p>
-            <div class="flex gap-2 mb-3 text-[11px] font-mono">
-                <span class="px-2 py-1 bg-amber-500/20 text-amber-300 rounded">KURD2026</span>
-                <span class="px-2 py-1 bg-amber-500/20 text-amber-300 rounded">VIP99</span>
-            </div>
+            <p class="text-[10px] text-slate-400 mb-2">معاينة الأدمن السريعة:</p>
             <button onclick="unlockDirectly()" class="w-full py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg">فتح الخزنة مباشرة (معاينة الأدمن)</button>
         </div>
 
@@ -133,10 +120,9 @@
             <p id="hint-text" class="text-[11px] text-amber-400/80">تکایە ل هەمی کەناڵان ببنە ئەندام دا خەزینە ڤەکریت</p>
         </div>
 
-        <!-- خزنة الحسابات والميزات التفاعلية (تظهر بعد فتح البوابة) -->
+        <!-- خزنة الحسابات (تظهر بعد فتح البوابة) -->
         <div id="accounts-section" class="hidden flex flex-col gap-4">
             
-            <!-- خزنة الحساب (Account Vault) -->
             <div class="bg-slate-900/95 backdrop-blur cyber-border rounded-2xl p-5 cyber-glow relative overflow-hidden">
                 <div class="absolute top-0 right-0 left-0 h-1 cyber-gold"></div>
                 <div class="flex items-center justify-between mb-3">
@@ -160,28 +146,6 @@
                 </div>
             </div>
 
-            <!-- الصندوق الغامض (Mystery Box) -->
-            <div class="bg-slate-900/90 backdrop-blur cyber-border rounded-2xl p-4 text-center relative overflow-hidden">
-                <h3 id="t-box-title" class="text-xs font-bold text-amber-400 mb-1 flex items-center justify-center gap-1.5"><i class="fa-solid fa-box-open"></i> سندووقا نهێنی (Mystery Box)</h3>
-                <p id="t-box-desc" class="text-[11px] text-slate-400 mb-3">بەختێ خۆ تاقی بکە و دیاریەکا بێ بەرامبەر وەربگرە!</p>
-                
-                <button id="mystery-btn" onclick="openMysteryBox()" class="px-5 py-2.5 cyber-gold text-slate-950 font-extrabold text-xs rounded-xl shadow-lg hover:scale-105 transition flex items-center justify-center gap-2 mx-auto">
-                    <i class="fa-solid fa-gift"></i>
-                    <span id="t-box-btn">سندووقێ ڤەکە</span>
-                </button>
-                <div id="mystery-result" class="hidden mt-3 p-2.5 bg-slate-950 border border-amber-500/40 rounded-xl text-xs text-amber-300 font-bold"></div>
-            </div>
-
-            <!-- أكواد الاستبدال (Redeem Codes) -->
-            <div class="bg-slate-900/90 backdrop-blur cyber-border rounded-2xl p-4">
-                <h3 id="t-redeem-title" class="text-xs font-bold text-amber-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-ticket"></i> کۆدێ دیاریێ (Redeem Code)</h3>
-                <div class="flex gap-2">
-                    <input type="text" id="redeem-input" placeholder="KURD2026" class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-amber-300 font-mono uppercase focus:outline-none focus:border-amber-500" dir="ltr">
-                    <button onclick="redeemCode()" id="t-redeem-btn" class="px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-bold text-xs rounded-xl transition">چالاککرن</button>
-                </div>
-                <p id="redeem-msg" class="text-[11px] mt-2 hidden"></p>
-            </div>
-
             <!-- قسم شراء الألعاب والتواصل -->
             <div class="bg-slate-900/95 backdrop-blur cyber-border rounded-2xl p-5 text-center relative overflow-hidden">
                 <div class="absolute top-0 right-0 left-0 h-1 cyber-gold"></div>
@@ -203,59 +167,40 @@
     </footer>
 
     <script>
-        // نظام اللغات الثلاثة
         const translations = {
             ku: {
                 dir: "rtl", lang: "ku",
                 subtitle: "پلاتفۆرما Cyber Gold بۆ دابەشکرنا هەژماران",
-                timerTitle: "تێپەڕبوونا دەمی بۆ نویکرنا هژمارێن نوی",
                 chTitle: "تکایە ل کەناڵێن مە ببنە ئەندام بۆ ڤەکرنا خەزینێ",
                 chDesc: "ل سەر هەر کەناڵەکی بنە کلیک و 5 چرکا چاڤەڕێ بکە:",
                 progLabel: "رێژا تەواوکرنێ:",
                 unlockBtn: "خەزینا هژماران ڤەبوو! دیتنا هژمارێ",
                 hintText: "تکایە ل هەمی کەناڵان ببنە ئەندام دا خەزینە ڤەکریت",
                 vaultTitle: "خەزینا هژماران (Account Vault)",
-                boxTitle: "سندووقا نهێنی (Mystery Box)",
-                boxDesc: "بەختێ خۆ تاقی بکە و دیاریەکا بێ بەرامبەر وەربگرە!",
-                boxBtn: "سندووقێ ڤەکە",
-                redeemTitle: "کۆدێ دیاریێ (Redeem Code)",
-                redeemBtn: "چالاککرن",
                 buyTitle: "بۆ بکڕینا یاری و پڕۆگرامان و ئەندامەتییا VIP، پەیوەندیێ ب من بکە:",
                 copyBtn: "کۆپی", copiedText: "کۆپی بوو"
             },
             ar: {
                 dir: "rtl", lang: "ar",
                 subtitle: "منصة Cyber Gold لتوزيع الحسابات الاحترافية",
-                timerTitle: "الوقت الباقي لتحديث الحسابات الجديدة",
                 chTitle: "يرجى الانضمام إلى قنواتنا لفتح الخزنة",
                 chDesc: "اضغط على كل قناة وانتظر 5 ثوانٍ للتحقق:",
                 progLabel: "نسبة الإنجاز:",
                 unlockBtn: "تم فتح الخزنة! عرض الحساب الآن",
                 hintText: "يرجى الانضمام إلى جميع القنوات لفتح الخزنة",
                 vaultTitle: "خزنة الحسابات (Account Vault)",
-                boxTitle: "الصندوق الغامض (Mystery Box)",
-                boxDesc: "جرب حظك وافتح الصندوق للحصول على هدية مجانية!",
-                boxBtn: "افتح الصندوق",
-                redeemTitle: "أكواد الاستبدال (Redeem Code)",
-                redeemBtn: "تفعيل",
                 buyTitle: "لشراء الألعاب والتطبيقات وعضوية VIP، تواصل معي هنا:",
                 copyBtn: "نسخ", copiedText: "تم النسخ"
             },
             en: {
                 dir: "ltr", lang: "en",
                 subtitle: "Cyber Gold Platform for Premium Accounts",
-                timerTitle: "Time remaining for new accounts update",
                 chTitle: "Please join our channels to unlock the Vault",
                 chDesc: "Click on each channel and wait 5s to verify:",
                 progLabel: "Progress:",
                 unlockBtn: "Vault Unlocked! View Account Now",
                 hintText: "Please join all channels to unlock the Vault",
                 vaultTitle: "Account Vault",
-                boxTitle: "Mystery Box",
-                boxDesc: "Test your luck and open the box for a free reward!",
-                boxBtn: "Open Box",
-                redeemTitle: "Redeem Code",
-                redeemBtn: "Redeem",
                 buyTitle: "For buying games, apps & VIP access, contact me:",
                 copyBtn: "Copy", copiedText: "Copied"
             }
@@ -277,33 +222,15 @@
             });
 
             document.getElementById('t-subtitle').innerText = t.subtitle;
-            document.getElementById('t-timer-title').innerText = t.timerTitle;
             document.getElementById('t-ch-title').innerText = t.chTitle;
             document.getElementById('t-ch-desc').innerText = t.chDesc;
             document.getElementById('t-prog-label').innerText = t.progLabel;
             document.getElementById('t-unlock-btn').innerText = t.unlockBtn;
             document.getElementById('hint-text').innerText = t.hintText;
             document.getElementById('t-vault-title').innerText = t.vaultTitle;
-            document.getElementById('t-box-title').innerText = t.boxTitle;
-            document.getElementById('t-box-desc').innerText = t.boxDesc;
-            document.getElementById('t-box-btn').innerText = t.boxBtn;
-            document.getElementById('t-redeem-title').innerText = t.redeemTitle;
-            document.getElementById('t-redeem-btn').innerText = t.redeemBtn;
             document.getElementById('t-buy-title').innerText = t.buyTitle;
         }
 
-        // مؤقت 24 ساعة
-        let totalSeconds = 24 * 60 * 60;
-        setInterval(() => {
-            if (totalSeconds > 0) totalSeconds--;
-            let h = Math.floor(totalSeconds / 3600);
-            let m = Math.floor((totalSeconds % 3600) / 60);
-            let s = totalSeconds % 60;
-            document.getElementById('countdown').innerText = 
-                String(h).padStart(2, '0') + ' : ' + String(m).padStart(2, '0') + ' : ' + String(s).padStart(2, '0');
-        }, 1000);
-
-        // نظام القنوات والتقدم
         let channelState = { 1: 'pending', 2: 'pending', 3: 'pending', 4: 'pending' };
 
         function updateProgress() {
@@ -359,48 +286,12 @@
             });
         }
 
-        // ميزة الصندوق الغامض (Mystery Box)
-        let boxOpened = false;
-        function openMysteryBox() {
-            if (boxOpened) return;
-            boxOpened = true;
-            const btn = document.getElementById('mystery-btn');
-            const res = document.getElementById('mystery-result');
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ...`;
-            
-            setTimeout(() => {
-                btn.classList.add('hidden');
-                res.classList.remove('hidden');
-                const rewards = [
-                    "🎉 مبروك! ربحت كود خصم 50% عند الشراء من @yousifmziri (الكود: GOLD50)",
-                    "🎁 مبروك! حصلت على كود هدية إضافي: KURD2026",
-                    "⭐ حظ أوفر المرة القادمة! تواصل مع @yousifmziri للحصول على عروض VIP"
-                ];
-                res.innerText = rewards[Math.floor(Math.random() * rewards.length)];
-            }, 1000);
-        }
-
-        // ميزة أكواد الاستبدال (Redeem Codes)
-        function redeemCode() {
-            const code = document.getElementById('redeem-input').value.trim().toUpperCase();
-            const msg = document.getElementById('redeem-msg');
-            msg.classList.remove('hidden');
-
-            if (code === 'KURD2026' || code === 'VIP99') {
-                msg.className = "text-[11px] mt-2 text-emerald-400 font-bold";
-                msg.innerText = "✅ تم تفعيل الكود بنجاح! تواصل مع @yousifmziri وأرسل له لقطة شاشة لاستلام هديتك.";
-            } else {
-                msg.className = "text-[11px] mt-2 text-red-400";
-                msg.innerText = "❌ الكود غير صحيح أو منتهي الصلاحية.";
-            }
-        }
-
-        // الإشعارات الحية (Live Notifications)
+        // الإشعارات الحية
         const liveMessages = [
             "أحد الزوار فتح خزنة الحسابات الآن!",
-            "تم تفعيل كود VIP99 بنجاح قبل قليل",
-            "مستخدم جديد حصل على جائزة من الصندوق الغامض!",
-            "تحديث جديد قادم بعد انتهاء العداد التنازلي"
+            "مستخدم جديد حصل على تفاصيل حساب آيفون بنجاح",
+            "تم تحديث بيانات الحسابات قبل قليل",
+            "انضم الآن إلى قنوات التليجرام لتحصل على أحدث الحسابات"
         ];
         setInterval(() => {
             const toast = document.getElementById('live-toast');
