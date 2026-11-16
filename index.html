@@ -64,7 +64,7 @@
     <!-- المحتوى الأساسي -->
     <main class="w-full max-w-md mx-auto my-4 flex flex-col gap-4">
         
-        <!-- لوحة تحكم الأدمن المخفية (تظهر بعد 5 ضغطات على التاج) -->
+        <!-- لوحة تحكم الأدمن المخفية -->
         <div id="admin-panel" class="hidden bg-slate-950 border-2 border-amber-500 rounded-2xl p-4 shadow-2xl">
             <div class="flex justify-between items-center mb-3">
                 <span class="text-xs font-bold text-amber-400"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</span>
@@ -131,16 +131,16 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="block text-xs text-amber-400 mb-1 font-bold">Locked</label>
+                    <label class="block text-xs text-amber-400 mb-1 font-bold">Email / ICloud</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5">
                         <span dir="ltr" id="email-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">zakrobert66386@icloud.com</span>
                         <button onclick="copyText('email-1', this)" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-1 rounded-lg transition flex items-center gap-1"><span class="copy-txt">کۆپی</span> <i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs text-amber-400 mb-1 font-bold">مقفل</label>
+                    <label class="block text-xs text-amber-400 mb-1 font-bold">Password</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5">
-                        <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">Sangpham525</span>
+                        <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">Kurd0o@2026</span>
                         <button onclick="copyText('pass-1', this)" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-1 rounded-lg transition flex items-center gap-1"><span class="copy-txt">کۆپی</span> <i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
@@ -271,10 +271,33 @@
         }
 
         function showAccounts() {
+            // حفظ وقت فتح الخزنة بذاكرة المتصفح (localStorage) ليبقى صالحاً لـ 10 دقائق
+            localStorage.setItem('vault_unlocked_time', Date.now());
+
             document.getElementById('channels-section').style.display = 'none';
             document.getElementById('accounts-section').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // فحص الـ 10 دقائق عند فتح أو تحديث الصفحة تلقائياً
+        window.addEventListener('DOMContentLoaded', () => {
+            const unlockedTime = localStorage.getItem('vault_unlocked_time');
+            const tenMinutes = 10 * 60 * 1000; // 10 دقائق بالملي ثانية
+
+            if (unlockedTime) {
+                const currentTime = Date.now();
+                const timePassed = currentTime - parseInt(unlockedTime);
+
+                if (timePassed < tenMinutes) {
+                    // إذا لم تمر 10 دقائق بعد، افتح الخزنة مباشرة وأخفي بوابة القنوات
+                    document.getElementById('channels-section').style.display = 'none';
+                    document.getElementById('accounts-section').classList.remove('hidden');
+                } else {
+                    // انتهت الـ 10 دقائق، امسح الذاكرة ليعيد الخطوات من جديد
+                    localStorage.removeItem('vault_unlocked_time');
+                }
+            }
+        });
 
         function copyText(elementId, btn) {
             const text = document.getElementById(elementId).innerText;
