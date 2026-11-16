@@ -34,25 +34,33 @@
             </div>
             
             <h2 class="text-base font-bold text-white mb-1">يرجى الانضمام إلى قنواتنا أولاً</h2>
-            <p class="text-xs text-slate-400 mb-5">اضغط على القنوات الأربعة أدناه للانضمام إليهن لتفتح لك الحسابات:</p>
+            <p class="text-xs text-slate-400 mb-5">اضغط على القنوات الأربعة للانضمام وانتظر 5 ثواني للتحقق من كل قناة:</p>
 
-            <!-- قنواتك الأربعة مع تتبع الضغط عليها -->
+            <!-- قنواتك الأربعة مع مؤقت 5 ثواني لكل قناة -->
             <div class="flex flex-col gap-2.5 mb-6">
-                <a href="https://t.me/Kurd0o1" target="_blank" onclick="markClicked(1)" id="ch-1" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
+                <a href="https://t.me/Kurd0o1" target="_blank" onclick="startTimer(1)" id="ch-1" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
                     <span class="text-xs font-medium text-slate-200">Kurd0o1</span>
-                    <i class="fa-brands fa-telegram text-blue-400"></i>
+                    <div id="status-1" class="flex items-center gap-2">
+                        <i class="fa-brands fa-telegram text-blue-400"></i>
+                    </div>
                 </a>
-                <a href="https://t.me/Kurd0o2" target="_blank" onclick="markClicked(2)" id="ch-2" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
+                <a href="https://t.me/Kurd0o2" target="_blank" onclick="startTimer(2)" id="ch-2" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
                     <span class="text-xs font-medium text-slate-200">Kurd0o2</span>
-                    <i class="fa-brands fa-telegram text-blue-400"></i>
+                    <div id="status-2" class="flex items-center gap-2">
+                        <i class="fa-brands fa-telegram text-blue-400"></i>
+                    </div>
                 </a>
-                <a href="https://t.me/Kurd0o3" target="_blank" onclick="markClicked(3)" id="ch-3" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
+                <a href="https://t.me/Kurd0o3" target="_blank" onclick="startTimer(3)" id="ch-3" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
                     <span class="text-xs font-medium text-slate-200">Kurd0o3</span>
-                    <i class="fa-brands fa-telegram text-blue-400"></i>
+                    <div id="status-3" class="flex items-center gap-2">
+                        <i class="fa-brands fa-telegram text-blue-400"></i>
+                    </div>
                 </a>
-                <a href="https://t.me/Kurd0o4" target="_blank" onclick="markClicked(4)" id="ch-4" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
+                <a href="https://t.me/Kurd0o4" target="_blank" onclick="startTimer(4)" id="ch-4" class="flex items-center justify-between px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl hover:border-blue-500/50 transition">
                     <span class="text-xs font-medium text-slate-200">Kurd0o4</span>
-                    <i class="fa-brands fa-telegram text-blue-400"></i>
+                    <div id="status-4" class="flex items-center gap-2">
+                        <i class="fa-brands fa-telegram text-blue-400"></i>
+                    </div>
                 </a>
             </div>
 
@@ -80,14 +88,37 @@
                     <label class="block text-xs text-slate-400 mb-1 font-medium">البريد الإلكتروني</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5 shadow-inner">
                         <button onclick="copyText('email-1', this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5"><i class="fa-regular fa-copy"></i> نسخ</button>
-                        <span dir="ltr" id="email-1" class="text-slate-200 font-mono text-sm select-all tracking-wider">iIPJz2xB@js001.club</span>
+                        <span dir="ltr" id="email-1" class="text-slate-200 font-mono text-sm select-all tracking-wider">ariaher.na.ndez1724@icloud.com</span>
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs text-slate-400 mb-1 font-medium">كلمة المرور</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5 shadow-inner">
                         <button onclick="copyText('pass-1', this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5"><i class="fa-regular fa-copy"></i> نسخ</button>
-                        <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-sm select-all tracking-wider">w7k7zj6Yjg</span>
+                        <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-sm select-all tracking-wider">P@Ib32ac</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الحساب الثاني -->
+            <div class="bg-slate-900/90 backdrop-blur border border-slate-800/80 rounded-2xl p-5 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-medium text-slate-400 flex items-center gap-1"><i class="fa-regular fa-clock text-blue-400"></i> الحساب الثاني</span>
+                    <span class="text-xs font-bold px-3 py-1 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">Apple ID</span>
+                </div>
+                <div class="mb-3">
+                    <label class="block text-xs text-slate-400 mb-1 font-medium">البريد الإلكتروني</label>
+                    <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5 shadow-inner">
+                        <button onclick="copyText('email-2', this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5"><i class="fa-regular fa-copy"></i> نسخ</button>
+                        <span dir="ltr" id="email-2" class="text-slate-200 font-mono text-sm select-all tracking-wider">iiwR@js001.club</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1 font-medium">كلمة المرور</label>
+                    <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5 shadow-inner">
+                        <button onclick="copyText('pass-2', this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5"><i class="fa-regular fa-copy"></i> نسخ</button>
+                        <span dir="ltr" id="pass-2" class="text-slate-200 font-mono text-sm select-all tracking-wider">z77un1pXmD</span>
                     </div>
                 </div>
             </div>
@@ -110,19 +141,41 @@
     <footer class="w-full text-center text-xs text-slate-500 pb-2">جميع الحقوق محفوظة &copy; Kurd0oAccounts</footer>
     
     <script>
-        let clickedChannels = { 1: false, 2: false, 3: false, 4: false };
+        let channelState = { 1: 'pending', 2: 'pending', 3: 'pending', 4: 'pending' };
 
-        function markClicked(channelNum) {
-            clickedChannels[channelNum] = true;
+        function startTimer(channelNum) {
+            // إذا القناة أصلاً مكتملة أو العداد شغال عليها، لا تعيده
+            if (channelState[channelNum] !== 'pending') return;
             
-            // تغيير لون الزر ليدل على أنه تم الانضمام
+            channelState[channelNum] = 'counting';
             const btn = document.getElementById('ch-' + channelNum);
-            btn.classList.add('border-emerald-500/60', 'bg-emerald-950/20');
-            btn.querySelector('.fa-telegram').classList.remove('text-blue-400');
-            btn.querySelector('.fa-telegram').classList.add('text-emerald-400');
+            const statusDiv = document.getElementById('status-' + channelNum);
+            
+            btn.classList.add('border-amber-500/60', 'bg-amber-950/20');
+            
+            let seconds = 5;
+            statusDiv.innerHTML = `<span class="text-[11px] text-amber-400 font-medium">جاري التحقق (${seconds}ث)</span> <i class="fa-solid fa-spinner fa-spin text-amber-400 text-xs"></i>`;
 
-            // التحقق إذا ضغط على القنوات الأربعة كلها
-            if (clickedChannels[1] && clickedChannels[2] && clickedChannels[3] && clickedChannels[4]) {
+            const interval = setInterval(() => {
+                seconds--;
+                if (seconds > 0) {
+                    statusDiv.innerHTML = `<span class="text-[11px] text-amber-400 font-medium">جاري التحقق (${seconds}ث)</span> <i class="fa-solid fa-spinner fa-spin text-amber-400 text-xs"></i>`;
+                } else {
+                    clearInterval(interval);
+                    channelState[channelNum] = 'done';
+                    
+                    // تحويل الزر إلى اللون الأخضر وعلامة الصح
+                    btn.classList.remove('border-amber-500/60', 'bg-amber-950/20');
+                    btn.classList.add('border-emerald-500/60', 'bg-emerald-950/20');
+                    statusDiv.innerHTML = `<span class="text-[11px] text-emerald-400 font-bold">تم</span> <i class="fa-solid fa-circle-check text-emerald-400"></i>`;
+                    
+                    checkAllDone();
+                }
+            }, 1000);
+        }
+
+        function checkAllDone() {
+            if (channelState[1] === 'done' && channelState[2] === 'done' && channelState[3] === 'done' && channelState[4] === 'done') {
                 document.getElementById('unlock-btn-container').classList.remove('hidden');
                 document.getElementById('hint-text').style.display = 'none';
             }
