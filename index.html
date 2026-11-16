@@ -44,20 +44,13 @@
     <!-- المحتوى الأساسي -->
     <main class="w-full max-w-md mx-auto my-4 flex flex-col gap-4">
         
-        <!-- إحصائيات الموقع الحية -->
-        <div class="grid grid-cols-3 gap-2 text-center">
-            <div class="bg-slate-900/80 backdrop-blur border gold-border rounded-xl p-2.5">
-                <span class="block text-amber-400 font-extrabold text-sm" id="stat-visitors">1,420</span>
-                <span id="t-stat1" class="text-[10px] text-slate-400">سەرەدانا</span>
+        <!-- عداد تنازلي لمدة 24 ساعة لتجديد الحسابات -->
+        <div class="bg-slate-900/90 backdrop-blur border gold-border rounded-2xl p-3 text-center gold-glow">
+            <div class="text-[11px] text-amber-400 font-bold mb-1 flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-stopwatch"></i>
+                <span id="t-timer-title">تێپەڕبوونا دەمی بۆ نویکرنا هژمارێن نوی</span>
             </div>
-            <div class="bg-slate-900/80 backdrop-blur border gold-border rounded-xl p-2.5">
-                <span class="block text-amber-400 font-extrabold text-sm">385</span>
-                <span id="t-stat2" class="text-[10px] text-slate-400">هەژمارێن مەزاختی</span>
-            </div>
-            <div class="bg-slate-900/80 backdrop-blur border gold-border rounded-xl p-2.5">
-                <span class="block text-emerald-400 font-extrabold text-sm flex items-center justify-center gap-1"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span>Live</span>
-                <span id="t-stat3" class="text-[10px] text-slate-400">سێرڤەر کارا یە</span>
-            </div>
+            <div id="countdown" class="text-amber-200 font-mono text-base font-extrabold tracking-wider" dir="ltr">23 : 59 : 59</div>
         </div>
 
         <!-- قسم قنوات التليجرام وخطوات الاشتراك -->
@@ -121,30 +114,19 @@
         <!-- قسم الحسابات النهائية (مخفي في البداية) -->
         <div id="accounts-section" class="hidden flex flex-col gap-4">
             
-            <!-- معلومات الحساب -->
+            <!-- معلومات الحساب (معدلة بكلمات Locked و مقفل) -->
             <div class="bg-slate-900/95 backdrop-blur border gold-border rounded-2xl p-5 gold-glow relative overflow-hidden">
                 <div class="absolute top-0 right-0 left-0 h-1 gold-gradient"></div>
-                
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-xs font-bold px-3 py-1 bg-amber-500/10 text-amber-400 rounded-lg border border-amber-500/20">Account Details</span>
-                    <span id="t-acc-title" class="text-xs font-medium text-slate-400 flex items-center gap-1"><i class="fa-solid fa-key text-amber-400"></i> زانیاریێن هژمارێ</span>
-                </div>
-
-                <!-- زر النسخ الشامل -->
-                <button onclick="copyAllInfo()" class="w-full mb-4 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-copy"></i>
-                    <span id="t-copy-all">کۆپیکرنا هەمی زانیاریان ب ئێک جار (Copy All)</span>
-                </button>
 
                 <div class="mb-3">
-                    <label class="block text-xs text-amber-400 mb-1 font-bold">Locked (Email)</label>
+                    <label class="block text-xs text-amber-400 mb-1 font-bold">Locked</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5">
                         <span dir="ltr" id="email-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">zakrobert66386@icloud.com</span>
                         <button onclick="copyText('email-1', this)" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-1 rounded-lg transition flex items-center gap-1"><span class="copy-txt">کۆپی</span> <i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs text-amber-400 mb-1 font-bold">مقفل (Password)</label>
+                    <label class="block text-xs text-amber-400 mb-1 font-bold">مقفل</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5">
                         <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">Sangpham525</span>
                         <button onclick="copyText('pass-1', this)" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-1 rounded-lg transition flex items-center gap-1"><span class="copy-txt">کۆپی</span> <i class="fa-regular fa-copy"></i></button>
@@ -200,16 +182,12 @@
                 dir: "rtl",
                 lang: "ku",
                 subtitle: "پلاتفۆرما فەرمی بۆ دابەشکرنا هەژمارێن پرۆفیشناڵ",
-                stat1: "سەرەدانا",
-                stat2: "هەژمارێن مەزاختی",
-                stat3: "سێرڤەر کارا یە",
+                timerTitle: "تێپەڕبوونا دەمی بۆ نویکرنا هژمارێن نوی",
                 chTitle: "تکایە ل کەناڵێن مە یێن تليجرامی ببنە ئەندام پێشقی",
                 chDesc: "ل سەر کەناڵێن ل خوارێ بنە کلیک و 5 چرکا بۆ هەر ئێکێ چاڤەڕێ بکە:",
                 progLabel: "رێژا تەواوکرنێ:",
                 unlockBtn: "بەلگە تەواو بوون، ڤەکرا هژمارێ دیتن!",
                 hintText: "تکایە ل هەمی کەناڵان ببنە ئەندام دا دوگمە ڤەکریت",
-                accTitle: "زانیاریێن هژمارێ",
-                copyAll: "کۆپیکرنا هەمی زانیاریان ب ئێک جار (Copy All)",
                 recentTitle: "دوا هژمارێن هاتینە زێدەکرن",
                 statusOnline: "بەردەستە (Online)",
                 faqTitle: "ڕێنمایی و هاریکاری (FAQ)",
@@ -222,16 +200,12 @@
                 dir: "rtl",
                 lang: "ar",
                 subtitle: "المنصة الرسمية لتوزيع الحسابات الاحترافية",
-                stat1: "الزيارات",
-                stat2: "الحسابات الموزعة",
-                stat3: "السيرفر نشط",
+                timerTitle: "الوقت الباقي لتحديث الحسابات الجديدة",
                 chTitle: "يرجى الانضمام إلى قنواتنا على التليجرام أولاً",
                 chDesc: "اضغط على القنوات أدناه وانتظر 5 ثوانٍ لكل قناة:",
                 progLabel: "نسبة الإنجاز:",
                 unlockBtn: "تم الانضمام، عرض الحساب الآن!",
                 hintText: "يرجى الانضمام إلى جميع القنوات ليظهر زر العرض",
-                accTitle: "بيانات الحساب",
-                copyAll: "نسخ جميع البيانات بضغطة واحدة (Copy All)",
                 recentTitle: "أحدث الحسابات المضافة",
                 statusOnline: "متاح (Online)",
                 faqTitle: "الأسئلة الشائعة والتعليمات (FAQ)",
@@ -244,16 +218,12 @@
                 dir: "ltr",
                 lang: "en",
                 subtitle: "Official platform for professional accounts distribution",
-                stat1: "Visitors",
-                stat2: "Distributed",
-                stat3: "Server Online",
+                timerTitle: "Time remaining for new accounts update",
                 chTitle: "Please join our Telegram channels first",
                 chDesc: "Click on the channels below and wait 5s for each:",
                 progLabel: "Progress:",
                 unlockBtn: "Joined Successfully, View Account!",
                 hintText: "Please join all channels to unlock the button",
-                accTitle: "Account Details",
-                copyAll: "Copy All Info at Once",
                 recentTitle: "Recent Added Accounts",
                 statusOnline: "Available (Online)",
                 faqTitle: "Help & FAQ",
@@ -273,7 +243,6 @@
             document.getElementById('html-root').setAttribute('dir', t.dir);
             document.getElementById('html-root').setAttribute('lang', t.lang);
 
-            // تحديث الأزرار
             ['ku', 'ar', 'en'].forEach(l => {
                 const btn = document.getElementById('btn-' + l);
                 if (l === lang) {
@@ -283,24 +252,32 @@
                 }
             });
 
-            // تحديث النصوص
             document.getElementById('t-subtitle').innerText = t.subtitle;
-            document.getElementById('t-stat1').innerText = t.stat1;
-            document.getElementById('t-stat2').innerText = t.stat2;
-            document.getElementById('t-stat3').innerText = t.stat3;
+            document.getElementById('t-timer-title').innerText = t.timerTitle;
             document.getElementById('t-ch-title').innerText = t.chTitle;
             document.getElementById('t-ch-desc').innerText = t.chDesc;
             document.getElementById('t-prog-label').innerText = t.progLabel;
             document.getElementById('t-unlock-btn').innerText = t.unlockBtn;
             document.getElementById('hint-text').innerText = t.hintText;
-            document.getElementById('t-acc-title').innerText = t.accTitle;
-            document.getElementById('t-copy-all').innerText = t.copyAll;
             document.getElementById('t-recent-title').innerText = t.recentTitle;
             document.querySelectorAll('.status-online').forEach(el => el.innerText = t.statusOnline);
             document.getElementById('t-faq-title').innerText = t.faqTitle;
             document.getElementById('t-faq-desc').innerText = t.faqDesc;
             document.getElementById('t-buy-title').innerText = t.buyTitle;
         }
+
+        // عداد تنازلي لمدة 24 ساعة
+        let totalSeconds = 24 * 60 * 60;
+        setInterval(() => {
+            if (totalSeconds > 0) totalSeconds--;
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
+            document.getElementById('countdown').innerText = 
+                String(hours).padStart(2, '0') + ' : ' + 
+                String(minutes).padStart(2, '0') + ' : ' + 
+                String(seconds).padStart(2, '0');
+        }, 1000);
 
         let channelState = { 1: 'pending', 2: 'pending', 3: 'pending', 4: 'pending' };
 
@@ -361,21 +338,6 @@
             navigator.clipboard.writeText(text).then(() => {
                 spanTxt.innerText = t.copiedText;
                 setTimeout(() => { spanTxt.innerText = t.copyBtn; }, 1500);
-            });
-        }
-
-        function copyAllInfo() {
-            const email = document.getElementById('email-1').innerText;
-            const password = document.getElementById('pass-1').innerText;
-            const fullText = `Email (Locked): ${email}\nPassword (مقفل): ${password}\n\nKurd0oAccounts Channel: @yousifmziri`;
-            
-            navigator.clipboard.writeText(fullText).then(() => {
-                const btnSpan = document.getElementById('t-copy-all');
-                const oldText = btnSpan.innerText;
-                btnSpan.innerText = currentLang === 'ku' ? 'هەمی زانیاری هاتنە کۆپیکرن!' : (currentLang === 'ar' ? 'تم نسخ جميع البيانات!' : 'All Info Copied!');
-                setTimeout(() => {
-                    btnSpan.innerText = oldText;
-                }, 2000);
             });
         }
     </script>
