@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ku" dir="rtl" id="html-root">
 <head>
@@ -49,7 +48,7 @@
             </div>
         </div>
 
-        <!-- أيقونة التاج (اضغط 5 مرات لفتح لوحة الأدمن) -->
+        <!-- أيقونة التاج -->
         <div onclick="adminClick()" class="w-16 h-16 cyber-gold rounded-2xl flex items-center justify-center cyber-glow mb-3 floating cursor-pointer select-none">
             <i class="fa-solid fa-crown text-2xl text-slate-950"></i>
         </div>
@@ -71,16 +70,31 @@
                 <span class="text-xs font-bold text-amber-400"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</span>
                 <button onclick="document.getElementById('admin-panel').classList.add('hidden')" class="text-xs text-red-400">إغلاق ✖</button>
             </div>
-            <p class="text-[10px] text-slate-400 mb-2">معاينة الأدمن السريعة:</p>
             <button onclick="unlockDirectly()" class="w-full py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg">فتح الخزنة مباشرة (معاينة الأدمن)</button>
         </div>
 
         <!-- بوابة القنوات الإجبارية -->
-        <div id="channels-section" class="bg-slate-900/90 backdrop-blur cyber-border rounded-2xl p-5 cyber-glow text-center relative overflow-hidden">
+        <div id="channels-section" class="bg-slate-900/90 backdrop-blur cyber-border rounded-2xl p-5 cyber-glow relative overflow-hidden">
             <div class="absolute top-0 right-0 left-0 h-1 cyber-gold"></div>
             
-            <h2 id="t-ch-title" class="text-sm font-bold text-white mb-1">تکایە ل کەناڵێن مە ببنە ئەندام بۆ ڤەکرنا خەزینێ</h2>
-            <p id="t-ch-desc" class="text-[11px] text-slate-400 mb-4">ل سەر هەر کەناڵەکی بنە کلیک و 5 چرکا چاڤەڕێ بکە:</p>
+            <h2 id="t-ch-title" class="text-sm font-bold text-white mb-1">چەوا هژمارێ وەردگری؟ (چۆن تحصل على الحساب؟)</h2>
+            <p id="t-ch-desc" class="text-[11px] text-slate-400 mb-4">هنگاڤێن ئاسان بۆ ڤەکرنا خەزینا هەژماران:</p>
+
+            <!-- خطوة الإرشادات المرتبة (Guide Steps) -->
+            <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+                <div class="bg-slate-950/80 border border-amber-500/30 rounded-xl p-2.5">
+                    <span class="w-5 h-5 cyber-gold rounded-full text-slate-950 text-[10px] font-bold inline-flex items-center justify-center mb-1">1</span>
+                    <p id="t-step1" class="text-[10px] text-slate-300 font-medium">ل هەر 4 کەناڵان بنە کلیک</p>
+                </div>
+                <div class="bg-slate-950/80 border border-amber-500/30 rounded-xl p-2.5">
+                    <span class="w-5 h-5 cyber-gold rounded-full text-slate-950 text-[10px] font-bold inline-flex items-center justify-center mb-1">2</span>
+                    <p id="t-step2" class="text-[10px] text-slate-300 font-medium">5 چرکا ل هەر ئێكێ بنە</p>
+                </div>
+                <div class="bg-slate-950/80 border border-amber-500/30 rounded-xl p-2.5">
+                    <span class="w-5 h-5 cyber-gold rounded-full text-slate-950 text-[10px] font-bold inline-flex items-center justify-center mb-1">3</span>
+                    <p id="t-step3" class="text-[10px] text-slate-300 font-medium">خەزینە ڤەکریت و هژمارێ بابهە</p>
+                </div>
+            </div>
 
             <!-- شريط التقدم -->
             <div class="w-full bg-slate-950 rounded-full h-2 mb-2 p-0.5 border border-slate-800">
@@ -121,9 +135,8 @@
             <p id="hint-text" class="text-[11px] text-amber-400/80">تکایە ل هەمی کەناڵان ببنە ئەندام دا خەزینە ڤەکریت</p>
         </div>
 
-        <!-- خزنة الحسابات (تظهر بعد فتح البوابة) -->
+        <!-- خزنة الحسابات -->
         <div id="accounts-section" class="hidden flex flex-col gap-4">
-            
             <div class="bg-slate-900/95 backdrop-blur cyber-border rounded-2xl p-5 cyber-glow relative overflow-hidden">
                 <div class="absolute top-0 right-0 left-0 h-1 cyber-gold"></div>
                 <div class="flex items-center justify-between mb-3">
@@ -134,20 +147,20 @@
                 <div class="mb-3">
                     <label class="block text-xs text-amber-400 mb-1 font-bold">Email / ICloud</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5">
-                        <span dir="ltr" id="email-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">⏳⏳tomorrow⏳⏳</span>
+                        <span dir="ltr" id="email-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">zakrobert66386@icloud.com</span>
                         <button onclick="copyText('email-1', this)" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-1 rounded-lg transition flex items-center gap-1"><span class="copy-txt">کۆپی</span> <i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs text-amber-400 mb-1 font-bold">Password</label>
                     <div class="flex items-center justify-between bg-slate-950 border border-slate-800 rounded-xl p-2.5">
-                        <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">⏳⏳غدا//سباهي⏳⏳</span>
+                        <span dir="ltr" id="pass-1" class="text-slate-200 font-mono text-xs select-all tracking-wider">Kurd0o@2026</span>
                         <button onclick="copyText('pass-1', this)" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-1 rounded-lg transition flex items-center gap-1"><span class="copy-txt">کۆپی</span> <i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
             </div>
 
-            <!-- قسم شراء الألعاب والتواصل -->
+            <!-- قسم التواصل والشراء -->
             <div class="bg-slate-900/95 backdrop-blur cyber-border rounded-2xl p-5 text-center relative overflow-hidden">
                 <div class="absolute top-0 right-0 left-0 h-1 cyber-gold"></div>
                 <p id="t-buy-title" class="text-xs text-slate-300 font-medium mb-1">بۆ بکڕینا یاری و پڕۆگرامان و ئەندامەتییا VIP، پەیوەندیێ ب من بکە:</p>
@@ -157,7 +170,6 @@
                     <span>@yousifmziri</span>
                 </a>
             </div>
-
         </div>
 
     </main>
@@ -172,8 +184,11 @@
             ku: {
                 dir: "rtl", lang: "ku",
                 subtitle: "پلاتفۆرما Cyber Gold بۆ دابەشکرنا هەژماران",
-                chTitle: "تکایە ل کەناڵێن مە ببنە ئەندام بۆ ڤەکرنا خەزینێ",
-                chDesc: "ل سەر هەر کەناڵەکی بنە کلیک و 5 چرکا چاڤەڕێ بکە:",
+                chTitle: "چەوا هژمارێ وەردگری؟",
+                chDesc: "هنگاڤێن ئاسان بۆ ڤەکرنا خەزینا هەژماران:",
+                step1: "ل هەر 4 کەناڵان بنە کلیک",
+                step2: "5 چرکا ل هەر ئێكێ بنە",
+                step3: "خەزینە ڤەکریت و هژمارێ بابهە",
                 progLabel: "رێژا تەواوکرنێ:",
                 unlockBtn: "خەزینا هژماران ڤەبوو! دیتنا هژمارێ",
                 hintText: "تکایە ل هەمی کەناڵان ببنە ئەندام دا خەزینە ڤەکریت",
@@ -184,8 +199,11 @@
             ar: {
                 dir: "rtl", lang: "ar",
                 subtitle: "منصة Cyber Gold لتوزيع الحسابات الاحترافية",
-                chTitle: "يرجى الانضمام إلى قنواتنا لفتح الخزنة",
-                chDesc: "اضغط على كل قناة وانتظر 5 ثوانٍ للتحقق:",
+                chTitle: "كيف تحصل على الحساب؟",
+                chDesc: "خطوات بسيطة لفتح خزنة الحسابات:",
+                step1: "اضغط على القنوات الأربع",
+                step2: "انتظر 5 ثوانٍ في كل قناة",
+                step3: "ستفتح الخزنة ويظهر الحساب",
                 progLabel: "نسبة الإنجاز:",
                 unlockBtn: "تم فتح الخزنة! عرض الحساب الآن",
                 hintText: "يرجى الانضمام إلى جميع القنوات لفتح الخزنة",
@@ -196,8 +214,11 @@
             en: {
                 dir: "ltr", lang: "en",
                 subtitle: "Cyber Gold Platform for Premium Accounts",
-                chTitle: "Please join our channels to unlock the Vault",
-                chDesc: "Click on each channel and wait 5s to verify:",
+                chTitle: "How to get the account?",
+                chDesc: "Simple steps to unlock the account vault:",
+                step1: "Click all 4 channels",
+                step2: "Wait 5s in each channel",
+                step3: "Vault unlocks to show account",
                 progLabel: "Progress:",
                 unlockBtn: "Vault Unlocked! View Account Now",
                 hintText: "Please join all channels to unlock the Vault",
@@ -225,6 +246,9 @@
             document.getElementById('t-subtitle').innerText = t.subtitle;
             document.getElementById('t-ch-title').innerText = t.chTitle;
             document.getElementById('t-ch-desc').innerText = t.chDesc;
+            document.getElementById('t-step1').innerText = t.step1;
+            document.getElementById('t-step2').innerText = t.step2;
+            document.getElementById('t-step3').innerText = t.step3;
             document.getElementById('t-prog-label').innerText = t.progLabel;
             document.getElementById('t-unlock-btn').innerText = t.unlockBtn;
             document.getElementById('hint-text').innerText = t.hintText;
@@ -272,29 +296,24 @@
         }
 
         function showAccounts() {
-            // حفظ وقت فتح الخزنة بذاكرة المتصفح (localStorage) ليبقى صالحاً لـ 10 دقائق
             localStorage.setItem('vault_unlocked_time', Date.now());
-
             document.getElementById('channels-section').style.display = 'none';
             document.getElementById('accounts-section').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // فحص الـ 10 دقائق عند فتح أو تحديث الصفحة تلقائياً
         window.addEventListener('DOMContentLoaded', () => {
             const unlockedTime = localStorage.getItem('vault_unlocked_time');
-            const tenMinutes = 10 * 60 * 1000; // 10 دقائق بالملي ثانية
+            const tenMinutes = 10 * 60 * 1000;
 
             if (unlockedTime) {
                 const currentTime = Date.now();
                 const timePassed = currentTime - parseInt(unlockedTime);
 
                 if (timePassed < tenMinutes) {
-                    // إذا لم تمر 10 دقائق بعد، افتح الخزنة مباشرة وأخفي بوابة القنوات
                     document.getElementById('channels-section').style.display = 'none';
                     document.getElementById('accounts-section').classList.remove('hidden');
                 } else {
-                    // انتهت الـ 10 دقائق، امسح الذاكرة ليعيد الخطوات من جديد
                     localStorage.removeItem('vault_unlocked_time');
                 }
             }
@@ -310,7 +329,6 @@
             });
         }
 
-        // الإشعارات الحية
         const liveMessages = [
             "أحد الزوار فتح خزنة الحسابات الآن!",
             "مستخدم جديد حصل على تفاصيل حساب آيفون بنجاح",
@@ -328,7 +346,6 @@
             }, 4000);
         }, 12000);
 
-        // فتح لوحة الأدمن المخفية (5 ضغطات على التاج)
         let crownClicks = 0;
         function adminClick() {
             crownClicks++;
